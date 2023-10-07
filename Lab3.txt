@@ -1,0 +1,100 @@
+package Lab3;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
+
+import org.openqa.selenium.*;
+
+public class LabHome {
+	static void baitap(WebDriver driver) throws InterruptedException  {
+		driver.get("https://www.techlistic.com/p/selenium-practice-form.html");
+		driver.manage().window().maximize();
+		WebElement firstname = driver.findElement(By.name("firstname"));
+		WebElement lastname = driver.findElement(By.name("lastname"));
+		 firstname.sendKeys("Phung");
+		 Thread.sleep(3000);
+		 lastname.sendKeys("Hai");
+		 Thread.sleep(3000);
+		 WebElement genderradio1 = driver.findElement(By.id("sex-0"));
+		 WebElement genderradio2 = driver.findElement(By.id("sex-1"));
+		 genderradio1.click();
+		 Thread.sleep(3000);
+		 genderradio2.click();
+		 Thread.sleep(3000);
+		 
+		 WebElement yearradio1 = driver.findElement(By.id("exp-0"));
+		 WebElement yearradio2 = driver.findElement(By.id("exp-1"));
+		 WebElement yearradio3 = driver.findElement(By.id("exp-2"));
+		 WebElement yearradio4 = driver.findElement(By.id("exp-3"));
+		 WebElement yearradio5 = driver.findElement(By.id("exp-4"));
+		 WebElement yearradio6 = driver.findElement(By.id("exp-5"));
+		 WebElement yearradio7 = driver.findElement(By.id("exp-6"));
+		 yearradio1.click();
+		 Thread.sleep(3000);
+		 yearradio2.click();
+		 Thread.sleep(3000);
+		 yearradio3.click();
+		 Thread.sleep(3000);
+		 yearradio4.click();
+		 Thread.sleep(3000);
+		 yearradio5.click();
+		 Thread.sleep(3000);
+		 yearradio6.click();
+		 Thread.sleep(3000);
+		 yearradio7.click();
+		 Thread.sleep(3000);
+		
+		 
+		 WebElement date = driver.findElement(By.id("datepicker"));
+		 date.sendKeys("29/05/2000");
+		 Thread.sleep(3000);
+		 WebElement profession = driver.findElement(By.id("profession-0"));
+		 profession.click();
+		 Thread.sleep(3000);
+		 if(profession.isSelected()) {
+			 System.out.println("Checkbox is Toggled on");
+		 }else {
+			 System.out.println("Checkbox is Toggled off");
+		 }
+		 
+		 profession.click();
+		 Thread.sleep(3000);
+		 if(!profession.isSelected()) {
+			 System.out.println("Checkbox is Toggled off");
+		 }
+		
+	     List <WebElement> automation =(List<WebElement>) driver.findElements(By.xpath("//input[@name='tool']"));
+	     System.out.println(automation.size());
+	     for(int i=0;i<=automation.size()-1;i++)
+	     {
+	    	 automation.get(i).click();
+	     }
+	     
+	     Select continent = new Select(driver.findElement(By.name("continents")));
+	     continent.selectByVisibleText("Europe");
+	     
+	     Select commands = new Select(driver.findElement(By.id("selenium_commands")));
+		 commands.selectByIndex(0);
+	     commands.selectByIndex(1);
+		 commands.selectByIndex(2);
+		 commands.selectByIndex(3);
+		 commands.selectByIndex(4);
+		
+	     WebElement upload = driver.findElement(By.id("photo"));
+	     upload.sendKeys("D:\\screenshot.png");
+	     
+	    WebElement submit = driver.findElement(By.id("submit"));
+	}
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver\\chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		baitap(driver);
+	}
+
+}

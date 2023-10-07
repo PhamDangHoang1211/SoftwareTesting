@@ -1,0 +1,66 @@
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class Bai2 {
+	 private static WebDriver driver = null;
+		@BeforeTest
+		 public void setup() {
+			 System.setProperty("webdriver.chrome.driver", "C:\\Users\\MSI\\Desktop\\chromedriver_win32_2\\chromedriver.exe");
+			 driver = new ChromeDriver();
+
+		     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		     driver.manage().window().maximize();
+
+		     driver.get("http://demo.guru99.com/test/newtours/");
+		 }
+		@Test
+		public void TestCase1() {
+			driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[2]/td/table/tbody/tr/td[2]/a")).click();
+			String title=driver.getTitle();
+			String expected="Register: Mercury Tours";
+			Assert.assertEquals(title, expected);
+		}
+		@Test
+		public void TestCase2() {
+			driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[2]/td/table/tbody/tr/td[3]/a")).click();
+			String title=driver.getTitle();
+			String expected="Under Construction: Mercury Tours";
+			Assert.assertEquals(title, expected);
+		}
+		@Test
+		public void TestCase3() {
+			driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[2]/td/table/tbody/tr/td[2]/a")).click();
+			driver.findElement(By.name("firstName")).sendKeys("bao");
+			driver.findElement(By.name("lastName")).sendKeys("dao");
+			driver.findElement(By.name("phone")).sendKeys("0128274774");
+			driver.findElement(By.id("userName")).sendKeys("baovip0201@gmail.com");
+			driver.findElement(By.id("email")).sendKeys("baovip0201");
+			driver.findElement(By.name("password")).sendKeys("momo0808");
+			driver.findElement(By.name("confirmPassword")).sendKeys("momo0808");
+			driver.findElement(By.name("submit")).click();
+			String atual=driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[3]/td/p[2]/font")).getText();
+			System.out.print(atual);
+			Assert.assertTrue(true, atual);
+			
+		}
+		@Test(enabled = true)
+		public void TestCase4() {
+			driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[3]/td/p[2]/font/a")).click();
+			driver.findElement(By.name("userName")).sendKeys("baovip0201");
+			driver.findElement(By.name("password")).sendKeys("momo0808");
+			driver.findElement(By.name("submit")).click();
+			String atual=driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[1]/td/h3")).getText();
+			Assert.assertTrue(true, atual);
+		}
+		@AfterTest
+		public void close() {
+			driver.quit();
+		}
+}

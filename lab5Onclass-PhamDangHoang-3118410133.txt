@@ -1,0 +1,55 @@
+package Testcase;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+
+public class lab5 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver\\chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		
+		driver.get("http://automationpractice.com/index.php");
+		driver.findElement(By.xpath("//*[@id=\"header\"]/div[2]/div/div/nav/div[1]/a")).click();
+		driver.findElement(By.id("email")).sendKeys("hoangpham12112000@gmail.com");
+		driver.findElement(By.id("passwd")).sendKeys("0395478675");
+		driver.findElement(By.xpath("//*[@id=\"SubmitLogin\"]/span")).click();
+		Thread.sleep(2000);
+		WebElement element= driver.findElement(By.className("sf-with-ul"));
+		Actions action=new Actions(driver);
+		action.moveToElement(element).perform();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("/html/body/div/div[1]/header/div[3]/div/div/div[6]/ul/li[1]/ul/li[1]/ul/li[1]/a")).click();
+		Thread.sleep(2000);
+		WebElement a = driver.findElement(By.className("sf-with-ul"));
+		Actions act=new Actions(driver);
+		act.moveToElement(a).perform();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//*[@id=\"center_column\"]/ul/li/div/div[2]/div[2]/a[2]/span")).click();
+		driver.findElement(By.xpath("//*[@id=\"quantity_wanted_p\"]/a[2]/span/i")).click();
+		Thread.sleep(2000);
+		Select commands = new Select(driver.findElement(By.xpath("//*[@id=\"group_1\"]")));
+		commands.selectByIndex(2);
+		Thread.sleep(2000);
+		driver.findElement(By.id("color_14")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//*[@id=\"add_to_cart\"]/button/span")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//*[@id=\"layer_cart\"]/div[1]/div[2]/div[4]/a/span")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//*[@id=\"center_column\"]/p[2]/a[1]/span")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//*[@id=\"center_column\"]/form/p/button/span")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.id("cgv")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//*[@id=\"form\"]/p/button/span")).click();
+		
+	}
+
+}

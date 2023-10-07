@@ -1,0 +1,29 @@
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class Labhome {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver\\chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+
+		
+		driver.get("http://automationpractice.com/index.php");
+		driver.findElement(By.xpath("//*[@id=\"header\"]/div[2]/div/div/nav/div[1]/a")).click();
+		Thread.sleep(2000);
+	    driver.findElement(By.id("email")).sendKeys("abc");
+	    Thread.sleep(2000);
+	    driver.findElement(By.xpath("//*[@id=\"SubmitLogin\"]/span")).click();
+	    Thread.sleep(2000);
+	    WebElement a = driver.findElement(By.xpath("//*[@id=\"center_column\"]/div[1]"));
+	    
+	    System.out.print(a.findElement(By.tagName("li")).getText());
+	}
+
+}
